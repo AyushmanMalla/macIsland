@@ -50,5 +50,6 @@ struct ExpandedNotchView: View {
             )
         )
         .shadow(color: .black.opacity(0.5), radius: 20, x: 0, y: 10)
+        .drawingGroup()
     }
 }

@@ -33,6 +33,7 @@ struct PomodoroRingIndicator: View {
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 1), value: progress)
         }
+        .drawingGroup()
         .frame(width: 18, height: 18)
     }
 }

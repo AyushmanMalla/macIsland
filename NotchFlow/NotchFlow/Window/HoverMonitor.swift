@@ -3,7 +3,8 @@ import Combine
 
 class HoverMonitor: ObservableObject {
     @Published var isHovering: Bool = false
-    private var timer: Timer?
+    private var localMonitor: Any?
+    private var globalMonitor: Any?
 
     // Notch safe hover zone (Collapsed)
     private let collapsedWidth: CGFloat = 180
@@ -12,16 +13,34 @@ class HoverMonitor: ObservableObject {
     // Expanded zone (matches ExpandedNotchView bounds + some padding)
     private let expandedWidth: CGFloat = 480
     private let expandedHeight: CGFloat = 130
+    
+    deinit {
+        stopMonitoring()
+    }
 
     func startMonitoring() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
+        localMonitor = NSEvent.addLocalMonitorForEvents(matching: [.mouseMoved]) { [weak self] event in
+            self?.checkMouseLocation()
+            return event
+        }
+        
+        globalMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.mouseMoved]) { [weak self] _ in
             self?.checkMouseLocation()
         }
+        
+        // Initial check
+        checkMouseLocation()
     }
 
     func stopMonitoring() {
-        timer?.invalidate()
-        timer = nil
+        if let localMonitor = localMonitor {
+            NSEvent.removeMonitor(localMonitor)
+            self.localMonitor = nil
+        }
+        if let globalMonitor = globalMonitor {
+            NSEvent.removeMonitor(globalMonitor)
+            self.globalMonitor = nil
+        }
     }
 
     private func checkMouseLocation() {

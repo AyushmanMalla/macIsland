@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct AudioWaveformView: View {
-    @State private var phases: [Double] = Array(repeating: 0, count: 8)
+    @State private var targetScales: [CGFloat] = Array(repeating: 0.2, count: 8)
+    @State private var isAnimating: Bool = false
 
     private let barCount = 8
     private let barWidth: CGFloat = 3
@@ -23,15 +24,16 @@ struct AudioWaveformView: View {
                             endPoint: .top
                         )
                     )
-                    .frame(
-                        width: barWidth,
-                        height: barHeight(for: index)
+                    .frame(width: barWidth, height: maxBarHeight)
+                    .scaleEffect(
+                        y: isAnimating ? targetScales[index] : (minBarHeight / maxBarHeight),
+                        anchor: .bottom
                     )
                     .animation(
                         .easeInOut(duration: 0.3 + Double(index) * 0.05)
                         .repeatForever(autoreverses: true)
                         .delay(Double(index) * 0.08),
-                        value: phases[index]
+                        value: isAnimating
                     )
             }
         }
@@ -41,25 +43,11 @@ struct AudioWaveformView: View {
         }
     }
 
-    private func barHeight(for index: Int) -> CGFloat {
-        // Generate different heights using sine waves with different frequencies
-        let phase = phases[index]
-        let normalizedHeight = (sin(phase) + 1) / 2 // 0 to 1
-        return minBarHeight + (maxBarHeight - minBarHeight) * CGFloat(normalizedHeight)
-    }
-
     private func startAnimating() {
         for i in 0..<barCount {
-            phases[i] = Double.random(in: 0...(2 * .pi))
+            let normalizedHeight = (sin(Double.random(in: 0...(2 * .pi))) + 1) / 2
+            targetScales[i] = (minBarHeight + (maxBarHeight - minBarHeight) * CGFloat(normalizedHeight)) / maxBarHeight
         }
-
-        // Continuously update phases with a timer
-        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { _ in
-            for i in 0..<barCount {
-                withAnimation(.easeInOut(duration: 0.3)) {
-                    phases[i] += Double.random(in: 0.8...2.0)
-                }
-            }
-        }
+        isAnimating = true
     }
 }

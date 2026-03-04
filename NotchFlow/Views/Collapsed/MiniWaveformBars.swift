@@ -13,7 +13,11 @@ struct MiniWaveformBars: View {
             ForEach(0..<barCount, id: \.self) { index in
                 RoundedRectangle(cornerRadius: 1)
                     .fill(Color.white.opacity(0.8))
-                    .frame(width: barWidth, height: animating ? randomHeight(for: index) : minHeight)
+                    .frame(width: barWidth, height: maxHeight)
+                    .scaleEffect(
+                        y: animating ? randomScale(for: index) : (minHeight / maxHeight),
+                        anchor: .bottom
+                    )
                     .animation(
                         .easeInOut(duration: 0.4 + Double(index) * 0.15)
                         .repeatForever(autoreverses: true)
@@ -28,8 +32,8 @@ struct MiniWaveformBars: View {
         }
     }
 
-    private func randomHeight(for index: Int) -> CGFloat {
+    private func randomScale(for index: Int) -> CGFloat {
         let heights: [CGFloat] = [12, 8, 10]
-        return heights[index % heights.count]
+        return heights[index % heights.count] / maxHeight
     }
 }
