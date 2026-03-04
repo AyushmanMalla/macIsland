@@ -19,6 +19,7 @@
 		644055133FA479C419E0F9D3 /* NowPlayingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8990C70F991D06238862CD7E /* NowPlayingService.swift */; };
 		804DEFBFB46302D1765D2EA4 /* ExpandedNotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1A37D9EBA8234783FB0F46 /* ExpandedNotchView.swift */; };
 		81A0B114D98E679F481B5E2F /* NotchFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDD592AB2C2B4CAED9F8739 /* NotchFlowApp.swift */; };
+		B012B2AE98E8DC93EEB54B9F /* HoverMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4305BC255AA6755D71CBD55 /* HoverMonitor.swift */; };
 		B168B74C6A6807F9DD033D89 /* MiniWaveformBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B4793406D7E6E134E88D8 /* MiniWaveformBars.swift */; };
 		E1E695406B5F48C832631855 /* NotchPositionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5D2E781B2566347E0711A0 /* NotchPositionManager.swift */; };
 		E924CF725EF241E5BA7EEFDB /* PomodoroRingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CCC9519D9C24EC29F64C73 /* PomodoroRingIndicator.swift */; };
@@ -53,6 +54,7 @@
 		A1B62D6DC3DDAEA45C40D83A /* CollapsedNotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsedNotchView.swift; sourceTree = "<group>"; };
 		A3DC519D55710CD5992A47A0 /* NotchFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotchFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7A3EAC99635317E90B4B34 /* PomodoroTimerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerServiceTests.swift; sourceTree = "<group>"; };
+		B4305BC255AA6755D71CBD55 /* HoverMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverMonitor.swift; sourceTree = "<group>"; };
 		C9AE0625A9E04E6587F7AD80 /* NotchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchContentView.swift; sourceTree = "<group>"; };
 		CE5D2E781B2566347E0711A0 /* NotchPositionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPositionManager.swift; sourceTree = "<group>"; };
 		D8F0D815F9AC23D7C340811C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		1BA4B3D73423282D91E49DAA /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				B4305BC255AA6755D71CBD55 /* HoverMonitor.swift */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
 		2498C95302F782C6A0F1D8EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				B8293B8AD794B46A40D87872 /* Models */,
+				6F8A491A176FD110F53F4EFA /* NotchFlow */,
 				722F9CE193E098AA5694FBAC /* Resources */,
 				D62881164AF909370A451EF7 /* Services */,
 				968A68574E58E7642F0F6A0C /* Views */,
@@ -92,6 +103,14 @@
 				4F819C8EBA3A15B0223D9D3F /* PomodoroTimerView.swift */,
 			);
 			path = Expanded;
+			sourceTree = "<group>";
+		};
+		6F8A491A176FD110F53F4EFA /* NotchFlow */ = {
+			isa = PBXGroup;
+			children = (
+				1BA4B3D73423282D91E49DAA /* Window */,
+			);
+			path = NotchFlow;
 			sourceTree = "<group>";
 		};
 		722F9CE193E098AA5694FBAC /* Resources */ = {
@@ -255,6 +274,7 @@
 				F70C688A33A0FE669CD42DF8 /* AudioWaveformView.swift in Sources */,
 				41B32A9D469F62F5F4F66AD6 /* CollapsedNotchView.swift in Sources */,
 				804DEFBFB46302D1765D2EA4 /* ExpandedNotchView.swift in Sources */,
+				B012B2AE98E8DC93EEB54B9F /* HoverMonitor.swift in Sources */,
 				EBD2699F900566173DEA92FE /* MediaPlayerView.swift in Sources */,
 				B168B74C6A6807F9DD033D89 /* MiniWaveformBars.swift in Sources */,
 				1CAB79C2277B6D4D9A082372 /* Models.swift in Sources */,

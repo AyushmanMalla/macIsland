@@ -8,6 +8,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private var pomodoroService = PomodoroTimerService()
     private var nowPlayingService = NowPlayingService()
     private var notificationService = NotificationService()
+    private var hoverMonitor = HoverMonitor()
     private var cancellables = Set<AnyCancellable>()
 
     @Published var isExpanded = false
@@ -17,12 +18,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         setupNotchPanel()
         setupPomodoroNotifications()
         nowPlayingService.startObserving()
+        
+        // Start pure polling for 100% reliable hover tracking independent of Window Server
+        hoverMonitor.startMonitoring()
+        hoverMonitor.$isHovering
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isHovering in
+                if isHovering {
+                    self?.expandPanel()
+                } else {
+                    self?.collapsePanel()
+                }
+            }
+            .store(in: &cancellables)
     }
 
     private func setupNotchPanel() {
         guard let screen = NSScreen.main else { return }
 
-        let collapsedFrame = positionManager.calculateCollapsedFrame(for: screen)
+        // ALWAYS map the AppKit window to the fully expanded frame. 
+        // We use a zero-lag transparent canvas where only SwiftUI animates.
+        let expandedFrame = positionManager.calculateExpandedFrame(for: screen)
 
         let contentView = NotchContentView(
             isExpanded: Binding(
@@ -34,14 +51,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         )
 
         let panel = NotchPanel(
-            contentRect: collapsedFrame,
-            contentView: contentView,
-            onMouseEntered: { [weak self] in
-                self?.expandPanel()
-            },
-            onMouseExited: { [weak self] in
-                self?.collapsePanel()
-            }
+            contentRect: expandedFrame,
+            contentView: contentView
         )
 
         panel.orderFrontRegardless()
@@ -56,33 +67,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     private func expandPanel() {
-        guard !isExpanded, let screen = NSScreen.main, let panel = notchPanel else { return }
+        guard !isExpanded, let _ = notchPanel else { return }
         isExpanded = true
-        let expandedFrame = positionManager.calculateExpandedFrame(for: screen)
-        panel.animateToFrame(expandedFrame, duration: 0.45)
     }
 
     private func collapsePanel() {
-        guard isExpanded, let screen = NSScreen.main, let panel = notchPanel else { return }
-
-        // Debounce: verify the mouse is ACTUALLY outside the panel's current frame
-        let mouseLoc = NSEvent.mouseLocation
-        if panel.frame.contains(mouseLoc) {
-            return
-        }
-
+        guard isExpanded, let _ = notchPanel else { return }
         isExpanded = false
-        let collapsedFrame = positionManager.calculateCollapsedFrame(for: screen)
-        panel.animateToFrame(collapsedFrame, duration: 0.35)
     }
 
     private func repositionPanel() {
         guard let screen = NSScreen.main, let panel = notchPanel else { return }
-        let frame = isExpanded
-            ? positionManager.calculateExpandedFrame(for: screen)
-            : positionManager.calculateCollapsedFrame(for: screen)
-        panel.setFrame(frame, display: true)
-        panel.setupTrackingArea()
+        
+        let expandedFrame = positionManager.calculateExpandedFrame(for: screen)
+        panel.setFrame(expandedFrame, display: true, animate: false)
     }
 
     private func setupPomodoroNotifications() {
