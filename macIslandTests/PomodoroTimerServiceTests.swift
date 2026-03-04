@@ -1,5 +1,5 @@
 import XCTest
-@testable import NotchFlow
+@testable import macIsland
 
 final class PomodoroTimerServiceTests: XCTestCase {
 

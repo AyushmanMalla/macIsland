@@ -1,0 +1,540 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		018A6B7C19B0456FDF1541F0 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78D6173058CCED4EAEC3E9 /* NotificationService.swift */; };
+		241DA3A1F357A4F4207E298A /* macIslandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CFFE743DA6762594DF67D4 /* macIslandApp.swift */; };
+		38DF46001B66D8DE0766A78E /* PomodoroRingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBB67B93BBF101D95AB73B /* PomodoroRingIndicator.swift */; };
+		4A76ADAF85B5D70D45F4C29E /* NotchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75DD63FB72E355811B242B5 /* NotchPanel.swift */; };
+		4AD26BD0AF4A6DDE58802A5B /* NotchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C0FDD78CC77319F60DA889 /* NotchContentView.swift */; };
+		4B8433AC7618B1D76A9BFBBE /* NowPlayingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BAD5A9B0E941597B58C134 /* NowPlayingService.swift */; };
+		50130B40FA86608815FA4F93 /* MiniWaveformBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CDB34B9E58D6E075E6A478 /* MiniWaveformBars.swift */; };
+		5235200B585BF27ABCFC8B15 /* ExpandedNotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2356D32819A305553267C03F /* ExpandedNotchView.swift */; };
+		A136B8B4EDF70058EF2B07D7 /* PomodoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57D54C81F6D74D6EB28893E /* PomodoroTimerView.swift */; };
+		A8C65C758E2ACD985BDFC612 /* MediaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1FE81449912096D184E386 /* MediaPlayerView.swift */; };
+		CF7BC60EBA6EA40C204FF49B /* PomodoroTimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599E84DD294FD864C9E9A87 /* PomodoroTimerService.swift */; };
+		D3C4C8FD0717DA21E55EC2C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71DCA83A1AC695E81718851 /* AppDelegate.swift */; };
+		E0FE1C9F78E6CF20545B04C6 /* AudioWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7CFCEFDBAF6E1570B24394 /* AudioWaveformView.swift */; };
+		E438DBB2A96CB6681075E2CC /* HoverMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9173EBB43EAD5B917D50B3F /* HoverMonitor.swift */; };
+		E8B6E60224CAC935C0B8D7B2 /* CollapsedNotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED518FBAF41D4E24EE7A2D34 /* CollapsedNotchView.swift */; };
+		ECF0B743A8E27E33649CD2FA /* PomodoroTimerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883AFEFA0E91EA5C2AC17D6 /* PomodoroTimerServiceTests.swift */; };
+		EEAC62CB2135EC666BC72868 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70F441F97265CA238ACCE8 /* Models.swift */; };
+		F96A8D3FF0E56301370982EA /* NotchPositionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF9FCCD9075CB438D8DD078 /* NotchPositionManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1CB631E122903FC56D967C31 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 267ADA3843151364F89FB276 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CEB7A09B8C283BAE11C7FCD;
+			remoteInfo = macIsland;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F70F441F97265CA238ACCE8 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		1BF9FCCD9075CB438D8DD078 /* NotchPositionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPositionManager.swift; sourceTree = "<group>"; };
+		2356D32819A305553267C03F /* ExpandedNotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedNotchView.swift; sourceTree = "<group>"; };
+		2B1FE81449912096D184E386 /* MediaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerView.swift; sourceTree = "<group>"; };
+		4D0CEF7EBF41E5CBB9441122 /* macIsland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macIsland.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5883AFEFA0E91EA5C2AC17D6 /* PomodoroTimerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerServiceTests.swift; sourceTree = "<group>"; };
+		6D7CFCEFDBAF6E1570B24394 /* AudioWaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWaveformView.swift; sourceTree = "<group>"; };
+		6F78D6173058CCED4EAEC3E9 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		8599E84DD294FD864C9E9A87 /* PomodoroTimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerService.swift; sourceTree = "<group>"; };
+		9E173B15ECDFDAC5C35C4D49 /* macIslandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macIslandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1CFFE743DA6762594DF67D4 /* macIslandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macIslandApp.swift; sourceTree = "<group>"; };
+		ABDDF91CAB6C6318C6C4CC6D /* macIsland.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macIsland.entitlements; sourceTree = "<group>"; };
+		B5CDB34B9E58D6E075E6A478 /* MiniWaveformBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWaveformBars.swift; sourceTree = "<group>"; };
+		C71DCA83A1AC695E81718851 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C75DD63FB72E355811B242B5 /* NotchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPanel.swift; sourceTree = "<group>"; };
+		C7C0FDD78CC77319F60DA889 /* NotchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchContentView.swift; sourceTree = "<group>"; };
+		D0BAD5A9B0E941597B58C134 /* NowPlayingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingService.swift; sourceTree = "<group>"; };
+		D57D54C81F6D74D6EB28893E /* PomodoroTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerView.swift; sourceTree = "<group>"; };
+		E9173EBB43EAD5B917D50B3F /* HoverMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverMonitor.swift; sourceTree = "<group>"; };
+		ED518FBAF41D4E24EE7A2D34 /* CollapsedNotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsedNotchView.swift; sourceTree = "<group>"; };
+		EEEBB67B93BBF101D95AB73B /* PomodoroRingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroRingIndicator.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		017E79B0E9A1CE4C33A267BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4D0CEF7EBF41E5CBB9441122 /* macIsland.app */,
+				9E173B15ECDFDAC5C35C4D49 /* macIslandTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0B9622A6DDFCC258154551D0 /* Collapsed */ = {
+			isa = PBXGroup;
+			children = (
+				ED518FBAF41D4E24EE7A2D34 /* CollapsedNotchView.swift */,
+				B5CDB34B9E58D6E075E6A478 /* MiniWaveformBars.swift */,
+				EEEBB67B93BBF101D95AB73B /* PomodoroRingIndicator.swift */,
+			);
+			path = Collapsed;
+			sourceTree = "<group>";
+		};
+		208B5CE66F1F09D5DA95ADF1 /* NotchFlow */ = {
+			isa = PBXGroup;
+			children = (
+				70D0A1BB255890F9AE17A731 /* Window */,
+			);
+			path = NotchFlow;
+			sourceTree = "<group>";
+		};
+		70D0A1BB255890F9AE17A731 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				E9173EBB43EAD5B917D50B3F /* HoverMonitor.swift */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
+		76018B016088C5C65FB605FF /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				C75DD63FB72E355811B242B5 /* NotchPanel.swift */,
+				1BF9FCCD9075CB438D8DD078 /* NotchPositionManager.swift */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
+		A27C3E81EA4B38979219B7AF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0F70F441F97265CA238ACCE8 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A791582A8FA4287C922C54CB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ABDDF91CAB6C6318C6C4CC6D /* macIsland.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C20173E1E9B5C1253ED400DB /* macIslandTests */ = {
+			isa = PBXGroup;
+			children = (
+				5883AFEFA0E91EA5C2AC17D6 /* PomodoroTimerServiceTests.swift */,
+			);
+			path = macIslandTests;
+			sourceTree = "<group>";
+		};
+		C32E94B36E7EFCBE7C599B23 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				6F78D6173058CCED4EAEC3E9 /* NotificationService.swift */,
+				D0BAD5A9B0E941597B58C134 /* NowPlayingService.swift */,
+				8599E84DD294FD864C9E9A87 /* PomodoroTimerService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C8F1D2241C54631C91253775 = {
+			isa = PBXGroup;
+			children = (
+				F4E49E44D035882EC1E5D593 /* macIsland */,
+				C20173E1E9B5C1253ED400DB /* macIslandTests */,
+				017E79B0E9A1CE4C33A267BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CA3BB1A43C3BB5D8CAC16796 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0B9622A6DDFCC258154551D0 /* Collapsed */,
+				F58B97D46104151BD2FFD89A /* Expanded */,
+				C7C0FDD78CC77319F60DA889 /* NotchContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F4E49E44D035882EC1E5D593 /* macIsland */ = {
+			isa = PBXGroup;
+			children = (
+				A27C3E81EA4B38979219B7AF /* Models */,
+				208B5CE66F1F09D5DA95ADF1 /* NotchFlow */,
+				A791582A8FA4287C922C54CB /* Resources */,
+				C32E94B36E7EFCBE7C599B23 /* Services */,
+				CA3BB1A43C3BB5D8CAC16796 /* Views */,
+				76018B016088C5C65FB605FF /* Window */,
+				C71DCA83A1AC695E81718851 /* AppDelegate.swift */,
+				A1CFFE743DA6762594DF67D4 /* macIslandApp.swift */,
+			);
+			path = macIsland;
+			sourceTree = "<group>";
+		};
+		F58B97D46104151BD2FFD89A /* Expanded */ = {
+			isa = PBXGroup;
+			children = (
+				6D7CFCEFDBAF6E1570B24394 /* AudioWaveformView.swift */,
+				2356D32819A305553267C03F /* ExpandedNotchView.swift */,
+				2B1FE81449912096D184E386 /* MediaPlayerView.swift */,
+				D57D54C81F6D74D6EB28893E /* PomodoroTimerView.swift */,
+			);
+			path = Expanded;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2CEB7A09B8C283BAE11C7FCD /* macIsland */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 686CBACFC70F514F67B32D4E /* Build configuration list for PBXNativeTarget "macIsland" */;
+			buildPhases = (
+				7080896591848AC3595A4EE8 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = macIsland;
+			packageProductDependencies = (
+			);
+			productName = macIsland;
+			productReference = 4D0CEF7EBF41E5CBB9441122 /* macIsland.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ACF029AF4DB5F5A33BAFB5C1 /* macIslandTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F099657266206C39A4DCDA72 /* Build configuration list for PBXNativeTarget "macIslandTests" */;
+			buildPhases = (
+				E72F7A499FEC81469C1794F8 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6B8A6D3775AAFC9D170310F /* PBXTargetDependency */,
+			);
+			name = macIslandTests;
+			packageProductDependencies = (
+			);
+			productName = macIslandTests;
+			productReference = 9E173B15ECDFDAC5C35C4D49 /* macIslandTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		267ADA3843151364F89FB276 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					2CEB7A09B8C283BAE11C7FCD = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 541A8F0E5BE4E9CB00E23065 /* Build configuration list for PBXProject "macIsland" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = C8F1D2241C54631C91253775;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2CEB7A09B8C283BAE11C7FCD /* macIsland */,
+				ACF029AF4DB5F5A33BAFB5C1 /* macIslandTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7080896591848AC3595A4EE8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3C4C8FD0717DA21E55EC2C1 /* AppDelegate.swift in Sources */,
+				E0FE1C9F78E6CF20545B04C6 /* AudioWaveformView.swift in Sources */,
+				E8B6E60224CAC935C0B8D7B2 /* CollapsedNotchView.swift in Sources */,
+				5235200B585BF27ABCFC8B15 /* ExpandedNotchView.swift in Sources */,
+				E438DBB2A96CB6681075E2CC /* HoverMonitor.swift in Sources */,
+				A8C65C758E2ACD985BDFC612 /* MediaPlayerView.swift in Sources */,
+				50130B40FA86608815FA4F93 /* MiniWaveformBars.swift in Sources */,
+				EEAC62CB2135EC666BC72868 /* Models.swift in Sources */,
+				4AD26BD0AF4A6DDE58802A5B /* NotchContentView.swift in Sources */,
+				4A76ADAF85B5D70D45F4C29E /* NotchPanel.swift in Sources */,
+				F96A8D3FF0E56301370982EA /* NotchPositionManager.swift in Sources */,
+				018A6B7C19B0456FDF1541F0 /* NotificationService.swift in Sources */,
+				4B8433AC7618B1D76A9BFBBE /* NowPlayingService.swift in Sources */,
+				38DF46001B66D8DE0766A78E /* PomodoroRingIndicator.swift in Sources */,
+				CF7BC60EBA6EA40C204FF49B /* PomodoroTimerService.swift in Sources */,
+				A136B8B4EDF70058EF2B07D7 /* PomodoroTimerView.swift in Sources */,
+				241DA3A1F357A4F4207E298A /* macIslandApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E72F7A499FEC81469C1794F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECF0B743A8E27E33649CD2FA /* PomodoroTimerServiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A6B8A6D3775AAFC9D170310F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CEB7A09B8C283BAE11C7FCD /* macIsland */;
+			targetProxy = 1CB631E122903FC56D967C31 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1CBDDE45A817B151182F07CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = macIsland/Resources/macIsland.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = macIsland;
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "macIsland needs to control Spotify to fetch track info and playback state.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayushman.macIsland;
+				PRODUCT_NAME = macIsland;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		2F15BAF8D958CD429F7B3824 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayushman.macIslandTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/macIsland.app/Contents/MacOS/macIsland";
+			};
+			name = Debug;
+		};
+		4046DB59415F168830AE7F34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayushman.macIslandTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/macIsland.app/Contents/MacOS/macIsland";
+			};
+			name = Release;
+		};
+		D1E4A7776B3014A869EECC65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		E188F9E5D218B1C27A9BB27E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = macIsland/Resources/macIsland.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = macIsland;
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSAppleEventsUsageDescription = "macIsland needs to control Spotify to fetch track info and playback state.";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayushman.macIsland;
+				PRODUCT_NAME = macIsland;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		E2F5F7BEA63AF42BB12B8868 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		541A8F0E5BE4E9CB00E23065 /* Build configuration list for PBXProject "macIsland" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1E4A7776B3014A869EECC65 /* Debug */,
+				E2F5F7BEA63AF42BB12B8868 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		686CBACFC70F514F67B32D4E /* Build configuration list for PBXNativeTarget "macIsland" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E188F9E5D218B1C27A9BB27E /* Debug */,
+				1CBDDE45A817B151182F07CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F099657266206C39A4DCDA72 /* Build configuration list for PBXNativeTarget "macIslandTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F15BAF8D958CD429F7B3824 /* Debug */,
+				4046DB59415F168830AE7F34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 267ADA3843151364F89FB276 /* Project object */;
+}

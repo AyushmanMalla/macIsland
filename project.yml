@@ -1,4 +1,4 @@
-name: NotchFlow
+name: macIsland
 options:
   bundleIdPrefix: com.ayushman
   deploymentTarget:
@@ -14,41 +14,41 @@ settings:
     MACOSX_DEPLOYMENT_TARGET: "15.0"
 
 targets:
-  NotchFlow:
+  macIsland:
     type: application
     platform: macOS
     sources:
-      - path: NotchFlow
+      - path: macIsland
         type: group
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.ayushman.NotchFlow
+        PRODUCT_BUNDLE_IDENTIFIER: com.ayushman.macIsland
         INFOPLIST_KEY_LSUIElement: true
-        INFOPLIST_KEY_CFBundleDisplayName: NotchFlow
-        PRODUCT_NAME: NotchFlow
+        INFOPLIST_KEY_CFBundleDisplayName: macIsland
+        PRODUCT_NAME: macIsland
         GENERATE_INFOPLIST_FILE: true
         INFOPLIST_KEY_NSHumanReadableCopyright: ""
-        INFOPLIST_KEY_NSAppleEventsUsageDescription: "NotchFlow needs to control Spotify to fetch track info and playback state."
+        INFOPLIST_KEY_NSAppleEventsUsageDescription: "macIsland needs to control Spotify to fetch track info and playback state."
         CODE_SIGN_IDENTITY: "-"
         CODE_SIGN_STYLE: Automatic
         ENABLE_HARDENED_RUNTIME: false
         SWIFT_EMIT_LOC_STRINGS: true
     entitlements:
-      path: NotchFlow/Resources/NotchFlow.entitlements
+      path: macIsland/Resources/macIsland.entitlements
       properties:
         com.apple.security.app-sandbox: false
 
-  NotchFlowTests:
+  macIslandTests:
     type: bundle.unit-test
     platform: macOS
     sources:
-      - path: NotchFlowTests
+      - path: macIslandTests
         type: group
     dependencies:
-      - target: NotchFlow
+      - target: macIsland
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.ayushman.NotchFlowTests
+        PRODUCT_BUNDLE_IDENTIFIER: com.ayushman.macIslandTests
         GENERATE_INFOPLIST_FILE: true
-        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/NotchFlow.app/Contents/MacOS/NotchFlow"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/macIsland.app/Contents/MacOS/macIsland"
         BUNDLE_LOADER: "$(TEST_HOST)"

@@ -49,7 +49,7 @@ class NowPlayingService: ObservableObject {
     private func loadMediaRemoteFramework() {
         let bundlePath = "/System/Library/PrivateFrameworks/MediaRemote.framework"
         guard let bundle = CFBundleCreate(kCFAllocatorDefault, URL(fileURLWithPath: bundlePath) as CFURL) else {
-            print("NotchFlow: Failed to load MediaRemote.framework")
+            print("macIsland: Failed to load MediaRemote.framework")
             return
         }
         self.mediaRemoteBundle = bundle

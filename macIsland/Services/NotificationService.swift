@@ -9,7 +9,7 @@ class NotificationService: ObservableObject {
             DispatchQueue.main.async {
                 self?.hasPermission = granted
                 if let error = error {
-                    print("NotchFlow: Notification permission error: \(error)")
+                    print("macIsland: Notification permission error: \(error)")
                 }
             }
         }
@@ -43,7 +43,7 @@ class NotificationService: ObservableObject {
 
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
-                print("NotchFlow: Failed to send notification: \(error)")
+                print("macIsland: Failed to send notification: \(error)")
             }
         }
     }
