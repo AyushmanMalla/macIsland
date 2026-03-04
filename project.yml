@@ -1,0 +1,54 @@
+name: NotchFlow
+options:
+  bundleIdPrefix: com.ayushman
+  deploymentTarget:
+    macOS: "15.0"
+  xcodeVersion: "16.0"
+  minimumXcodeGenVersion: "2.38"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "15.0"
+
+targets:
+  NotchFlow:
+    type: application
+    platform: macOS
+    sources:
+      - path: NotchFlow
+        type: group
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ayushman.NotchFlow
+        INFOPLIST_KEY_LSUIElement: true
+        INFOPLIST_KEY_CFBundleDisplayName: NotchFlow
+        PRODUCT_NAME: NotchFlow
+        GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_KEY_NSHumanReadableCopyright: ""
+        INFOPLIST_KEY_NSAppleEventsUsageDescription: "NotchFlow needs to control Spotify to fetch track info and playback state."
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_HARDENED_RUNTIME: false
+        SWIFT_EMIT_LOC_STRINGS: true
+    entitlements:
+      path: NotchFlow/Resources/NotchFlow.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
+
+  NotchFlowTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: NotchFlowTests
+        type: group
+    dependencies:
+      - target: NotchFlow
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ayushman.NotchFlowTests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/NotchFlow.app/Contents/MacOS/NotchFlow"
+        BUNDLE_LOADER: "$(TEST_HOST)"
