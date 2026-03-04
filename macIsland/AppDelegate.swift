@@ -37,9 +37,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     private func setupNotchPanel() {
         guard let screen = NSScreen.main else { return }
 
-        // ALWAYS map the AppKit window to the fully expanded frame. 
-        // We use a zero-lag transparent canvas where only SwiftUI animates.
-        let expandedFrame = positionManager.calculateExpandedFrame(for: screen)
+        // Start with the collapsed frame to avoid blocking the screen
+        let initialFrame = positionManager.calculateCollapsedFrame(for: screen)
 
         let contentView = NotchContentView(
             isExpanded: Binding(
@@ -51,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         )
 
         let panel = NotchPanel(
-            contentRect: expandedFrame,
+            contentRect: initialFrame,
             contentView: contentView
         )
 
@@ -67,20 +66,39 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     private func expandPanel() {
-        guard !isExpanded, let _ = notchPanel else { return }
+        guard !isExpanded, let panel = notchPanel, let screen = NSScreen.main else { return }
+        
+        // 1. Immediately resize window to expanded size so the animation isn't clipped
+        let expandedFrame = positionManager.calculateExpandedFrame(for: screen)
+        panel.setFrame(expandedFrame, display: true, animate: false)
+        
+        // 2. Trigger SwiftUI animation
         isExpanded = true
     }
 
     private func collapsePanel() {
-        guard isExpanded, let _ = notchPanel else { return }
+        guard isExpanded, let panel = notchPanel, let screen = NSScreen.main else { return }
+        
+        // 1. Trigger SwiftUI animation first
         isExpanded = false
+        
+        // 2. Delay shrinking the window frame until the animation is likely finished
+        // to avoid clipping the collapsing island.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+            guard let self = self, !self.isExpanded, let screen = NSScreen.main else { return }
+            let collapsedFrame = self.positionManager.calculateCollapsedFrame(for: screen)
+            self.notchPanel?.setFrame(collapsedFrame, display: true, animate: false)
+        }
     }
 
     private func repositionPanel() {
         guard let screen = NSScreen.main, let panel = notchPanel else { return }
         
-        let expandedFrame = positionManager.calculateExpandedFrame(for: screen)
-        panel.setFrame(expandedFrame, display: true, animate: false)
+        let frame = isExpanded 
+            ? positionManager.calculateExpandedFrame(for: screen)
+            : positionManager.calculateCollapsedFrame(for: screen)
+            
+        panel.setFrame(frame, display: true, animate: false)
     }
 
     private func setupPomodoroNotifications() {
