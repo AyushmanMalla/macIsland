@@ -69,6 +69,21 @@ struct TrackInfo: Equatable {
         return min(elapsedTime / duration, 1.0)
     }
 
+    var hasContent: Bool {
+        !stableIdentity.isEmpty
+    }
+
+    var stableIdentity: String {
+        let normalizedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !normalizedTitle.isEmpty, normalizedTitle != Self.empty.title else {
+            return ""
+        }
+
+        let normalizedArtist = artist.trimmingCharacters(in: .whitespacesAndNewlines)
+        let normalizedAlbum = album.trimmingCharacters(in: .whitespacesAndNewlines)
+        return [normalizedTitle, normalizedArtist, normalizedAlbum].joined(separator: "\u{1F}")
+    }
+
     static func == (lhs: TrackInfo, rhs: TrackInfo) -> Bool {
         return lhs.title == rhs.title
             && lhs.artist == rhs.artist

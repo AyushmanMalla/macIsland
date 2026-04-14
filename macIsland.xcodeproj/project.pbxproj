@@ -8,13 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		018A6B7C19B0456FDF1541F0 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78D6173058CCED4EAEC3E9 /* NotificationService.swift */; };
+		0B52E3B39DA4164B46EF60B0 /* DynamicNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B45258D1853A89C6B79A0AF /* DynamicNotch.swift */; };
+		19D8D3C0AA82FCE6648D0264 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B2F449102FDB4FE23B1C3 /* NotchShape.swift */; };
 		241DA3A1F357A4F4207E298A /* macIslandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CFFE743DA6762594DF67D4 /* macIslandApp.swift */; };
+		32C47B0C0306F9A39BD78E17 /* DynamicNotchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F9FB9853AC6B810BB3152 /* DynamicNotchInfo.swift */; };
 		38DF46001B66D8DE0766A78E /* PomodoroRingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBB67B93BBF101D95AB73B /* PomodoroRingIndicator.swift */; };
 		4A76ADAF85B5D70D45F4C29E /* NotchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75DD63FB72E355811B242B5 /* NotchPanel.swift */; };
 		4AD26BD0AF4A6DDE58802A5B /* NotchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C0FDD78CC77319F60DA889 /* NotchContentView.swift */; };
+		4C5D4D415E23A1A5D9F95EAA /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1731003144E396A4C4F8AA /* NotchView.swift */; };
 		4B8433AC7618B1D76A9BFBBE /* NowPlayingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BAD5A9B0E941597B58C134 /* NowPlayingService.swift */; };
 		50130B40FA86608815FA4F93 /* MiniWaveformBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CDB34B9E58D6E075E6A478 /* MiniWaveformBars.swift */; };
 		5235200B585BF27ABCFC8B15 /* ExpandedNotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2356D32819A305553267C03F /* ExpandedNotchView.swift */; };
+		537AF87CD3F3B80AAC8D65E3 /* NSScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D80339324C0B800E6E4AA2 /* NSScreen+Extensions.swift */; };
 		A136B8B4EDF70058EF2B07D7 /* PomodoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57D54C81F6D74D6EB28893E /* PomodoroTimerView.swift */; };
 		A8C65C758E2ACD985BDFC612 /* MediaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1FE81449912096D184E386 /* MediaPlayerView.swift */; };
 		CF7BC60EBA6EA40C204FF49B /* PomodoroTimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599E84DD294FD864C9E9A87 /* PomodoroTimerService.swift */; };
@@ -24,6 +29,7 @@
 		E8B6E60224CAC935C0B8D7B2 /* CollapsedNotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED518FBAF41D4E24EE7A2D34 /* CollapsedNotchView.swift */; };
 		ECF0B743A8E27E33649CD2FA /* PomodoroTimerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883AFEFA0E91EA5C2AC17D6 /* PomodoroTimerServiceTests.swift */; };
 		EEAC62CB2135EC666BC72868 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70F441F97265CA238ACCE8 /* Models.swift */; };
+		F1F4C42B177E5FE76C7E2430 /* BlurModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B95DD11AD6FF6850F5603A /* BlurModifier.swift */; };
 		F96A8D3FF0E56301370982EA /* NotchPositionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF9FCCD9075CB438D8DD078 /* NotchPositionManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,17 +46,23 @@
 /* Begin PBXFileReference section */
 		0F70F441F97265CA238ACCE8 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		1BF9FCCD9075CB438D8DD078 /* NotchPositionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPositionManager.swift; sourceTree = "<group>"; };
+		1B45258D1853A89C6B79A0AF /* DynamicNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNotch.swift; sourceTree = "<group>"; };
 		2356D32819A305553267C03F /* ExpandedNotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedNotchView.swift; sourceTree = "<group>"; };
+		216B2F449102FDB4FE23B1C3 /* NotchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShape.swift; sourceTree = "<group>"; };
+		228F9FB9853AC6B810BB3152 /* DynamicNotchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNotchInfo.swift; sourceTree = "<group>"; };
 		2B1FE81449912096D184E386 /* MediaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerView.swift; sourceTree = "<group>"; };
 		4D0CEF7EBF41E5CBB9441122 /* macIsland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macIsland.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D1731003144E396A4C4F8AA /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
 		5883AFEFA0E91EA5C2AC17D6 /* PomodoroTimerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerServiceTests.swift; sourceTree = "<group>"; };
 		6D7CFCEFDBAF6E1570B24394 /* AudioWaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWaveformView.swift; sourceTree = "<group>"; };
 		6F78D6173058CCED4EAEC3E9 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		84D80339324C0B800E6E4AA2 /* NSScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSScreen+Extensions.swift"; sourceTree = "<group>"; };
 		8599E84DD294FD864C9E9A87 /* PomodoroTimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerService.swift; sourceTree = "<group>"; };
 		9E173B15ECDFDAC5C35C4D49 /* macIslandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macIslandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1CFFE743DA6762594DF67D4 /* macIslandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macIslandApp.swift; sourceTree = "<group>"; };
 		ABDDF91CAB6C6318C6C4CC6D /* macIsland.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macIsland.entitlements; sourceTree = "<group>"; };
 		B5CDB34B9E58D6E075E6A478 /* MiniWaveformBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWaveformBars.swift; sourceTree = "<group>"; };
+		B3B95DD11AD6FF6850F5603A /* BlurModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurModifier.swift; sourceTree = "<group>"; };
 		C71DCA83A1AC695E81718851 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C75DD63FB72E355811B242B5 /* NotchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPanel.swift; sourceTree = "<group>"; };
 		C7C0FDD78CC77319F60DA889 /* NotchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchContentView.swift; sourceTree = "<group>"; };
@@ -114,6 +126,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		AA17F07CA4A70C4A9E21D14A /* DynamicNotchKit */ = {
+			isa = PBXGroup;
+			children = (
+				B3B95DD11AD6FF6850F5603A /* BlurModifier.swift */,
+				1B45258D1853A89C6B79A0AF /* DynamicNotch.swift */,
+				228F9FB9853AC6B810BB3152 /* DynamicNotchInfo.swift */,
+				84D80339324C0B800E6E4AA2 /* NSScreen+Extensions.swift */,
+				216B2F449102FDB4FE23B1C3 /* NotchShape.swift */,
+				5D1731003144E396A4C4F8AA /* NotchView.swift */,
+			);
+			path = DynamicNotchKit;
+			sourceTree = "<group>";
+		};
 		A791582A8FA4287C922C54CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +187,7 @@
 		F4E49E44D035882EC1E5D593 /* macIsland */ = {
 			isa = PBXGroup;
 			children = (
+				AA17F07CA4A70C4A9E21D14A /* DynamicNotchKit */,
 				A27C3E81EA4B38979219B7AF /* Models */,
 				208B5CE66F1F09D5DA95ADF1 /* NotchFlow */,
 				A791582A8FA4287C922C54CB /* Resources */,
@@ -263,6 +289,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3C4C8FD0717DA21E55EC2C1 /* AppDelegate.swift in Sources */,
+				F1F4C42B177E5FE76C7E2430 /* BlurModifier.swift in Sources */,
+				0B52E3B39DA4164B46EF60B0 /* DynamicNotch.swift in Sources */,
+				32C47B0C0306F9A39BD78E17 /* DynamicNotchInfo.swift in Sources */,
 				E0FE1C9F78E6CF20545B04C6 /* AudioWaveformView.swift in Sources */,
 				E8B6E60224CAC935C0B8D7B2 /* CollapsedNotchView.swift in Sources */,
 				5235200B585BF27ABCFC8B15 /* ExpandedNotchView.swift in Sources */,
@@ -270,9 +299,12 @@
 				A8C65C758E2ACD985BDFC612 /* MediaPlayerView.swift in Sources */,
 				50130B40FA86608815FA4F93 /* MiniWaveformBars.swift in Sources */,
 				EEAC62CB2135EC666BC72868 /* Models.swift in Sources */,
+				537AF87CD3F3B80AAC8D65E3 /* NSScreen+Extensions.swift in Sources */,
 				4AD26BD0AF4A6DDE58802A5B /* NotchContentView.swift in Sources */,
 				4A76ADAF85B5D70D45F4C29E /* NotchPanel.swift in Sources */,
+				19D8D3C0AA82FCE6648D0264 /* NotchShape.swift in Sources */,
 				F96A8D3FF0E56301370982EA /* NotchPositionManager.swift in Sources */,
+				4C5D4D415E23A1A5D9F95EAA /* NotchView.swift in Sources */,
 				018A6B7C19B0456FDF1541F0 /* NotificationService.swift in Sources */,
 				4B8433AC7618B1D76A9BFBBE /* NowPlayingService.swift in Sources */,
 				38DF46001B66D8DE0766A78E /* PomodoroRingIndicator.swift in Sources */,

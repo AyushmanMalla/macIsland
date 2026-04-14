@@ -8,8 +8,13 @@ class NowPlayingService: ObservableObject {
     @Published var playbackState: PlaybackState = .stopped
     @Published var isPlaying: Bool = false
 
+    let trackDidChange = PassthroughSubject<TrackInfo, Never>()
+
     private var pollingTimer: AnyCancellable?
     private var mediaRemoteBundle: CFBundle?
+    private var currentTrackIdentity = ""
+    private var hasPrimedTrackIdentity = false
+    private var activePlayerBundleIdentifier: String?
 
     // MediaRemote function types
     private typealias MRMediaRemoteGetNowPlayingInfoFunction =
@@ -137,6 +142,7 @@ class NowPlayingService: ObservableObject {
             if let stringValue = result.stringValue {
                 if stringValue == "NOT_RUNNING" || stringValue == "ERROR" {
                     // Fall back to MediaRemote
+                    activePlayerBundleIdentifier = nil
                     fetchMediaRemoteInfo()
                     return
                 }
@@ -152,6 +158,7 @@ class NowPlayingService: ObservableObject {
                     let artUrlStr = parts[6]
 
                     let isPlayingNow = (playState == "playing")
+                    activePlayerBundleIdentifier = "com.spotify.client"
 
                     // Download artwork async if it changed
                     if self.trackInfo.title != title || self.trackInfo.albumArt == nil {
@@ -182,9 +189,7 @@ class NowPlayingService: ObservableObject {
     }
 
     private func updateState(title: String, artist: String, album: String, duration: Double, elapsed: Double, playing: Bool, img: NSImage?) {
-        self.isPlaying = playing
-        self.playbackState = playing ? .playing : .paused
-        self.trackInfo = TrackInfo(
+        let nextTrack = TrackInfo(
             title: title,
             artist: artist,
             album: album,
@@ -192,12 +197,27 @@ class NowPlayingService: ObservableObject {
             duration: duration,
             elapsedTime: elapsed
         )
+        let nextIdentity = nextTrack.stableIdentity
+        let shouldNotifyTrackChange = hasPrimedTrackIdentity && !nextIdentity.isEmpty && nextIdentity != currentTrackIdentity
+
+        currentTrackIdentity = nextIdentity
+        hasPrimedTrackIdentity = true
+        self.isPlaying = playing
+        self.playbackState = playing ? .playing : .paused
+        self.trackInfo = nextTrack
+
+        if shouldNotifyTrackChange {
+            trackDidChange.send(nextTrack)
+        }
     }
 
     private func fetchMediaRemoteInfo() {
         MRMediaRemoteGetNowPlayingInfo?(DispatchQueue.main) { [weak self] info in
             guard !info.isEmpty else {
                 DispatchQueue.main.async {
+                    self?.activePlayerBundleIdentifier = nil
+                    self?.currentTrackIdentity = ""
+                    self?.hasPrimedTrackIdentity = true
                     self?.trackInfo = .empty
                     self?.isPlaying = false
                     self?.playbackState = .stopped
@@ -210,6 +230,10 @@ class NowPlayingService: ObservableObject {
             let album = info["kMRMediaRemoteNowPlayingInfoAlbum"] as? String ?? ""
             let duration = info["kMRMediaRemoteNowPlayingInfoDuration"] as? Double ?? 0
             let elapsed = info["kMRMediaRemoteNowPlayingInfoElapsedTime"] as? Double ?? 0
+
+            self?.activePlayerBundleIdentifier =
+                (info["kMRMediaRemoteNowPlayingInfoClientBundleIdentifier"] as? String)
+                ?? (info["kMRMediaRemoteNowPlayingInfoBundleIdentifier"] as? String)
 
             var albumArt: NSImage? = nil
             if let artData = info["kMRMediaRemoteNowPlayingInfoArtworkData"] as? Data,
@@ -270,5 +294,26 @@ class NowPlayingService: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
             self?.fetchSpotifyInfoIfActive()
         }
+    }
+
+    func openCurrentPlayerApp() {
+        let bundleIdentifier =
+            activePlayerBundleIdentifier
+            ?? (isSpotifyRunning() ? "com.spotify.client" : nil)
+            ?? (isMusicRunning() ? "com.apple.Music" : nil)
+
+        guard let bundleIdentifier,
+              let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleIdentifier) else {
+            return
+        }
+
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.activates = true
+        NSWorkspace.shared.openApplication(at: url, configuration: configuration)
+    }
+
+    private func isMusicRunning() -> Bool {
+        let apps = NSWorkspace.shared.runningApplications
+        return apps.contains { $0.bundleIdentifier == "com.apple.Music" }
     }
 }
