@@ -4,57 +4,73 @@ import SwiftUI
 struct MusicTabView: View {
     @ObservedObject var nowPlayingService: NowPlayingService
 
+    private enum Metrics {
+        static let scale: CGFloat = 0.85
+        static let artworkTextSpacing: CGFloat = 10 * scale
+        static let textStackSpacing: CGFloat = 6 * scale
+        static let titleFontSize: CGFloat = 17 * scale
+        static let artistFontSize: CGFloat = 17 * scale
+    }
+
     private var title: String {
         nowPlayingService.trackInfo.hasContent ? nowPlayingService.trackInfo.title : "No Music"
     }
 
     var body: some View {
-        HStack(alignment: .top, spacing: 10) {
+        HStack(alignment: .center, spacing: Metrics.artworkTextSpacing) {
             Button(action: nowPlayingService.openCurrentPlayerApp) {
                 PlayerArtworkView(image: nowPlayingService.trackInfo.albumArt)
             }
             .buttonStyle(.plain)
 
-            VStack(alignment: .center, spacing: 6) {
+            VStack(alignment: .center, spacing: Metrics.textStackSpacing) {
                 Text(title)
-                    .font(.headline)
+                    .font(.system(size: Metrics.titleFontSize, weight: .semibold))
                     .lineLimit(1)
+                    .multilineTextAlignment(.center)
 
                 if !nowPlayingService.trackInfo.artist.isEmpty {
                     Text(nowPlayingService.trackInfo.artist)
                         .foregroundStyle(.secondary)
-                        .font(.headline)
+                        .font(.system(size: Metrics.artistFontSize, weight: .semibold))
                         .lineLimit(1)
+                        .multilineTextAlignment(.center)
                 }
 
                 PlaybackButtons(nowPlayingService: nowPlayingService)
             }
-            .frame(maxWidth: .infinity)
         }
-        .frame(width: ExpandedIslandLayout.width - 30)
+        .fixedSize(horizontal: true, vertical: true)
     }
 }
 
 private struct PlaybackButtons: View {
     @ObservedObject var nowPlayingService: NowPlayingService
 
+    private enum Metrics {
+        static let scale: CGFloat = 0.85
+        static let controlsSpacing: CGFloat = 20 * scale
+        static let secondaryControlSize: CGFloat = 24 * scale
+        static let primaryControlSize: CGFloat = 34 * scale
+    }
+
     var body: some View {
-        HStack(spacing: 20) {
+        HStack(spacing: Metrics.controlsSpacing) {
             Button(action: nowPlayingService.previousTrack) {
                 Image(systemName: "backward.fill")
-                    .font(.system(size: 24, weight: .bold))
+                    .font(.system(size: Metrics.secondaryControlSize, weight: .bold))
             }
             .buttonStyle(.plain)
 
             Button(action: nowPlayingService.togglePlayPause) {
                 Image(systemName: nowPlayingService.isPlaying ? "pause.fill" : "play.fill")
-                    .font(.system(size: 34, weight: .bold))
+                    .font(.system(size: Metrics.primaryControlSize, weight: .bold))
             }
             .buttonStyle(.plain)
 
             Button(action: nowPlayingService.nextTrack) {
                 Image(systemName: "forward.fill")
-                    .font(.system(size: 24, weight: .bold))
+                    .font(.system(size: Metrics.secondaryControlSize, weight: .bold))
             }
             .buttonStyle(.plain)
         }
@@ -63,6 +79,13 @@ private struct PlaybackButtons: View {
 
 private struct PlayerArtworkView: View {
     let image: NSImage?
+
+    private enum Metrics {
+        static let scale: CGFloat = 0.85
+        static let artworkSize: CGFloat = 80 * scale
+        static let cornerRadius: CGFloat = 18 * scale
+        static let placeholderIconSize: CGFloat = 24 * scale
+    }
 
     var body: some View {
         Group {
@@ -82,12 +105,12 @@ private struct PlayerArtworkView: View {
                     )
 
                     Image(systemName: "music.note")
-                        .font(.system(size: 24, weight: .medium))
+                        .font(.system(size: Metrics.placeholderIconSize, weight: .medium))
                         .foregroundStyle(.white.opacity(0.5))
                 }
             }
         }
-        .frame(width: 80, height: 80)
-        .clipShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .frame(width: Metrics.artworkSize, height: Metrics.artworkSize)
+        .clipShape(RoundedRectangle(cornerRadius: Metrics.cornerRadius, style: .continuous))
     }
 }

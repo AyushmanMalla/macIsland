@@ -5,29 +5,44 @@ struct ExpandedIslandView: View {
     @ObservedObject var taskStore: TaskStore
     @Binding var selectedTab: ExpandedTab
 
-    private var animatedHeight: CGFloat {
-        switch selectedTab {
-        case .music:
-            ExpandedIslandLayout.musicHeight
-        case .tasks:
-            ExpandedIslandLayout.tasksHeight(forVisibleTaskCount: taskStore.tasks.count)
-        }
+    private enum Metrics {
+        static let stackSpacing: CGFloat = 10
+        static let tasksContentHeightInset: CGFloat = 42
+        static let defaultHorizontalPadding: CGFloat = 15
+        static let defaultTopPadding: CGFloat = 10
+        static let defaultBottomPadding: CGFloat = 14
+        static let musicHorizontalPadding: CGFloat = 12
+        static let musicTopPadding: CGFloat = 8
+        static let musicBottomPadding: CGFloat = 11
+        static let segmentedWidth: CGFloat = 144
+    }
+
+    private var tasksHeight: CGFloat {
+        ExpandedIslandLayout.tasksHeight(forVisibleTaskCount: taskStore.tasks.count)
+    }
+
+    private var horizontalPadding: CGFloat {
+        selectedTab == .music ? Metrics.musicHorizontalPadding : Metrics.defaultHorizontalPadding
+    }
+
+    private var topPadding: CGFloat {
+        selectedTab == .music ? Metrics.musicTopPadding : Metrics.defaultTopPadding
+    }
+
+    private var bottomPadding: CGFloat {
+        selectedTab == .music ? Metrics.musicBottomPadding : Metrics.defaultBottomPadding
     }
 
     var body: some View {
-        VStack(spacing: 10) {
-            HStack(spacing: 0) {
-                Spacer(minLength: 0)
-
-                Picker("", selection: $selectedTab) {
-                    Text("Music").tag(ExpandedTab.music)
-                    Text("Tasks").tag(ExpandedTab.tasks)
-                }
-                .labelsHidden()
-                .pickerStyle(.segmented)
-                .controlSize(.small)
-                .frame(width: 144)
+        VStack(spacing: Metrics.stackSpacing) {
+            Picker("", selection: $selectedTab) {
+                Text("Music").tag(ExpandedTab.music)
+                Text("Tasks").tag(ExpandedTab.tasks)
             }
+            .labelsHidden()
+            .pickerStyle(.segmented)
+            .controlSize(.small)
+            .frame(width: Metrics.segmentedWidth)
 
             ZStack {
                 if selectedTab == .music {
@@ -48,12 +63,17 @@ struct ExpandedIslandView: View {
                         )
                 }
             }
-            .frame(height: animatedHeight - 42, alignment: .top)
+            .frame(height: selectedTab == .tasks ? tasksHeight - Metrics.tasksContentHeightInset : nil, alignment: .top)
         }
-        .padding(.horizontal, 15)
-        .padding(.top, 10)
-        .padding(.bottom, 14)
-        .frame(width: ExpandedIslandLayout.width, height: animatedHeight, alignment: .top)
+        .padding(.horizontal, horizontalPadding)
+        .padding(.top, topPadding)
+        .padding(.bottom, bottomPadding)
+        .fixedSize(horizontal: selectedTab == .music, vertical: selectedTab == .music)
+        .frame(
+            width: selectedTab == .tasks ? ExpandedIslandLayout.width : nil,
+            height: selectedTab == .tasks ? tasksHeight : nil,
+            alignment: .top
+        )
         .animation(.snappy(duration: 0.30, extraBounce: 0.04), value: selectedTab)
         .animation(.snappy(duration: 0.30, extraBounce: 0.02), value: taskStore.tasks.count)
     }

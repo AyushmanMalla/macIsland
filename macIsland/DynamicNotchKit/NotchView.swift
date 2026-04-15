@@ -42,6 +42,11 @@ struct NotchView<Content>: View where Content: View {
                 }
                 .fixedSize()
                 .frame(minWidth: dynamicNotch.notchWidth)
+                .onHover { hovering in
+                    withAnimation(dynamicNotch.animation) {
+                        dynamicNotch.setViewHovering(hovering)
+                    }
+                }
                 .background {
                     Rectangle()
                         .foregroundStyle(.black)

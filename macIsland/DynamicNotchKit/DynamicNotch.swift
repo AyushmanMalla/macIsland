@@ -21,7 +21,6 @@ final class DynamicNotch<Content>: ObservableObject where Content: View {
     private let hoverMonitor = HoverMonitor()
     private var hoverSubscription: AnyCancellable?
     private var interactivitySubscription: AnyCancellable?
-    private var selectedTabSubscription: AnyCancellable?
     private let notchStyle: Style
 
     enum Style {
@@ -68,13 +67,14 @@ final class DynamicNotch<Content>: ObservableObject where Content: View {
 
 extension DynamicNotch {
     private func configureHoverPipeline() {
-        syncHoverGeometry()
+        syncCollapsedActivationGeometry()
 
         hoverSubscription = hoverMonitor.$isHovering
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] hovering in
-                self?.setMouseInside(hovering)
+                guard hovering else { return }
+                self?.setMouseInside(true)
             }
 
         interactivitySubscription = $isMouseInside
@@ -82,13 +82,6 @@ extension DynamicNotch {
             .sink { [weak self] hovering in
                 self?.syncPanelInteractivity(isHovering: hovering)
             }
-
-        selectedTabSubscription = $selectedTab
-            .removeDuplicates()
-            .sink { [weak self] _ in
-                self?.syncExpandedHoverHeight()
-            }
-
     }
 
     private func setMouseInside(_ hovering: Bool) {
@@ -115,26 +108,16 @@ extension DynamicNotch {
         }
     }
 
-    private var expandedContentHeight: CGFloat {
-        switch selectedTab {
-        case .music:
-            ExpandedIslandLayout.musicHeight
-        case .tasks:
-            ExpandedIslandLayout.maxHeight
-        }
-    }
-
-    private func syncHoverGeometry() {
+    private func syncCollapsedActivationGeometry() {
         let collapsedWidth = max(notchWidth, 1)
         let collapsedHeight = max(notchHeight, 1)
         hoverMonitor.updateCollapsedNotchSize(
             NSSize(width: collapsedWidth, height: collapsedHeight)
         )
-        syncExpandedHoverHeight()
     }
 
-    private func syncExpandedHoverHeight() {
-        hoverMonitor.updateExpandedContentHeight(expandedContentHeight)
+    func setViewHovering(_ hovering: Bool) {
+        setMouseInside(hovering)
     }
 
     func setContent(contentID: UUID = .init(), content: @escaping () -> Content) {
@@ -208,7 +191,7 @@ extension DynamicNotch {
             notchWidth = 300
             notchHeight = screen.frame.maxY - screen.visibleFrame.maxY
         }
-        syncHoverGeometry()
+        syncCollapsedActivationGeometry()
     }
 
     func initializeWindow(screen: NSScreen) {
@@ -234,29 +217,20 @@ extension DynamicNotch {
 }
 
 struct HoverActivationGeometry {
-    static let expandedWidthPadding: CGFloat = 60
-    static let expandedHeightPadding: CGFloat = 24
     static let topEdgeTolerance: CGFloat = 1
 
-    static func activeRect(
+    static func activationRect(
         screenFrame: NSRect,
-        isHovering: Bool,
-        collapsedNotchSize: NSSize,
-        expandedContentHeight: CGFloat
+        collapsedNotchSize: NSSize
     ) -> NSRect {
         let collapsedWidth = max(collapsedNotchSize.width, 1)
         let collapsedHeight = max(collapsedNotchSize.height, 1)
-        let expandedWidth = ExpandedIslandLayout.width + expandedWidthPadding
-        let expandedHeight = max(expandedContentHeight, 1) + expandedHeightPadding
-
-        let width = isHovering ? expandedWidth : collapsedWidth
-        let height = isHovering ? expandedHeight : collapsedHeight
 
         return NSRect(
-            x: screenFrame.midX - (width / 2.0),
-            y: screenFrame.maxY - height,
-            width: width,
-            height: height + topEdgeTolerance
+            x: screenFrame.midX - (collapsedWidth / 2.0),
+            y: screenFrame.maxY - collapsedHeight,
+            width: collapsedWidth,
+            height: collapsedHeight + topEdgeTolerance
         )
     }
 }
@@ -268,19 +242,12 @@ private final class HoverMonitor: ObservableObject {
     private var globalMonitor: Any?
 
     private var collapsedNotchSize = NSSize(width: 300, height: 38)
-    private var expandedContentHeight = ExpandedIslandLayout.musicHeight
-
     deinit {
         stopMonitoring()
     }
 
     func updateCollapsedNotchSize(_ size: NSSize) {
         collapsedNotchSize = size
-        checkMouseLocation()
-    }
-
-    func updateExpandedContentHeight(_ height: CGFloat) {
-        expandedContentHeight = height
         checkMouseLocation()
     }
 
@@ -315,11 +282,9 @@ private final class HoverMonitor: ObservableObject {
         let mouseLoc = NSEvent.mouseLocation
         guard let screen = screenContaining(mouseLoc) else { return }
 
-        let activeRect = HoverActivationGeometry.activeRect(
+        let activeRect = HoverActivationGeometry.activationRect(
             screenFrame: screen.frame,
-            isHovering: isHovering,
-            collapsedNotchSize: collapsedNotchSize,
-            expandedContentHeight: expandedContentHeight
+            collapsedNotchSize: collapsedNotchSize
         )
 
         let isNowHovering = activeRect.contains(mouseLoc)
