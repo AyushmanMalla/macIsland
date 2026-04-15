@@ -21,6 +21,7 @@ final class DynamicNotch<Content>: ObservableObject where Content: View {
     private let hoverMonitor = HoverMonitor()
     private var hoverSubscription: AnyCancellable?
     private var interactivitySubscription: AnyCancellable?
+    private var selectedTabSubscription: AnyCancellable?
     private let notchStyle: Style
 
     enum Style {
@@ -67,6 +68,8 @@ final class DynamicNotch<Content>: ObservableObject where Content: View {
 
 extension DynamicNotch {
     private func configureHoverPipeline() {
+        syncHoverGeometry()
+
         hoverSubscription = hoverMonitor.$isHovering
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
@@ -79,6 +82,13 @@ extension DynamicNotch {
             .sink { [weak self] hovering in
                 self?.syncPanelInteractivity(isHovering: hovering)
             }
+
+        selectedTabSubscription = $selectedTab
+            .removeDuplicates()
+            .sink { [weak self] _ in
+                self?.syncExpandedHoverHeight()
+            }
+
     }
 
     private func setMouseInside(_ hovering: Bool) {
@@ -103,6 +113,28 @@ extension DynamicNotch {
         } else if panel.isKeyWindow {
             panel.resignKey()
         }
+    }
+
+    private var expandedContentHeight: CGFloat {
+        switch selectedTab {
+        case .music:
+            ExpandedIslandLayout.musicHeight
+        case .tasks:
+            ExpandedIslandLayout.maxHeight
+        }
+    }
+
+    private func syncHoverGeometry() {
+        let collapsedWidth = max(notchWidth, 1)
+        let collapsedHeight = max(notchHeight, 1)
+        hoverMonitor.updateCollapsedNotchSize(
+            NSSize(width: collapsedWidth, height: collapsedHeight)
+        )
+        syncExpandedHoverHeight()
+    }
+
+    private func syncExpandedHoverHeight() {
+        hoverMonitor.updateExpandedContentHeight(expandedContentHeight)
     }
 
     func setContent(contentID: UUID = .init(), content: @escaping () -> Content) {
@@ -176,6 +208,7 @@ extension DynamicNotch {
             notchWidth = 300
             notchHeight = screen.frame.maxY - screen.visibleFrame.maxY
         }
+        syncHoverGeometry()
     }
 
     func initializeWindow(screen: NSScreen) {
@@ -197,5 +230,114 @@ extension DynamicNotch {
         guard let windowController else { return }
         windowController.close()
         self.windowController = nil
+    }
+}
+
+struct HoverActivationGeometry {
+    static let expandedWidthPadding: CGFloat = 60
+    static let expandedHeightPadding: CGFloat = 24
+    static let topEdgeTolerance: CGFloat = 1
+
+    static func activeRect(
+        screenFrame: NSRect,
+        isHovering: Bool,
+        collapsedNotchSize: NSSize,
+        expandedContentHeight: CGFloat
+    ) -> NSRect {
+        let collapsedWidth = max(collapsedNotchSize.width, 1)
+        let collapsedHeight = max(collapsedNotchSize.height, 1)
+        let expandedWidth = ExpandedIslandLayout.width + expandedWidthPadding
+        let expandedHeight = max(expandedContentHeight, 1) + expandedHeightPadding
+
+        let width = isHovering ? expandedWidth : collapsedWidth
+        let height = isHovering ? expandedHeight : collapsedHeight
+
+        return NSRect(
+            x: screenFrame.midX - (width / 2.0),
+            y: screenFrame.maxY - height,
+            width: width,
+            height: height + topEdgeTolerance
+        )
+    }
+}
+
+private final class HoverMonitor: ObservableObject {
+    @Published var isHovering = false
+
+    private var localMonitor: Any?
+    private var globalMonitor: Any?
+
+    private var collapsedNotchSize = NSSize(width: 300, height: 38)
+    private var expandedContentHeight = ExpandedIslandLayout.musicHeight
+
+    deinit {
+        stopMonitoring()
+    }
+
+    func updateCollapsedNotchSize(_ size: NSSize) {
+        collapsedNotchSize = size
+        checkMouseLocation()
+    }
+
+    func updateExpandedContentHeight(_ height: CGFloat) {
+        expandedContentHeight = height
+        checkMouseLocation()
+    }
+
+    func startMonitoring() {
+        guard localMonitor == nil, globalMonitor == nil else { return }
+
+        localMonitor = NSEvent.addLocalMonitorForEvents(matching: [.mouseMoved]) { [weak self] event in
+            self?.checkMouseLocation()
+            return event
+        }
+
+        globalMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.mouseMoved]) { [weak self] _ in
+            self?.checkMouseLocation()
+        }
+
+        checkMouseLocation()
+    }
+
+    func stopMonitoring() {
+        if let localMonitor {
+            NSEvent.removeMonitor(localMonitor)
+            self.localMonitor = nil
+        }
+
+        if let globalMonitor {
+            NSEvent.removeMonitor(globalMonitor)
+            self.globalMonitor = nil
+        }
+    }
+
+    private func checkMouseLocation() {
+        let mouseLoc = NSEvent.mouseLocation
+        guard let screen = screenContaining(mouseLoc) else { return }
+
+        let activeRect = HoverActivationGeometry.activeRect(
+            screenFrame: screen.frame,
+            isHovering: isHovering,
+            collapsedNotchSize: collapsedNotchSize,
+            expandedContentHeight: expandedContentHeight
+        )
+
+        let isNowHovering = activeRect.contains(mouseLoc)
+        if isNowHovering != isHovering {
+            isHovering = isNowHovering
+        }
+    }
+
+    private func screenContaining(_ point: NSPoint) -> NSScreen? {
+        let expandedScreens = NSScreen.screens.filter { screen in
+            NSRect(
+                x: screen.frame.minX,
+                y: screen.frame.minY,
+                width: screen.frame.width,
+                height: screen.frame.height + HoverActivationGeometry.topEdgeTolerance
+            ).contains(point)
+        }
+
+        return expandedScreens.first ?? NSScreen.screenWithMouse ?? NSScreen.screens.first
     }
 }
