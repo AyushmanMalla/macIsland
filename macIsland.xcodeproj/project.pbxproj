@@ -7,28 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		018A6B7C19B0456FDF1541F0 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F78D6173058CCED4EAEC3E9 /* NotificationService.swift */; };
 		0B52E3B39DA4164B46EF60B0 /* DynamicNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B45258D1853A89C6B79A0AF /* DynamicNotch.swift */; };
+		0CC0CC0CC0CC0CC0CC0CC0CC /* ExpandedIslandLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD0DD0DD0DD0DD0DD0DD0DD /* ExpandedIslandLayout.swift */; };
+		0EE0EE0EE0EE0EE0EE0EE0EE /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0FF0FF0FF0FF0FF0FF0FF /* TasksView.swift */; };
 		19D8D3C0AA82FCE6648D0264 /* NotchShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B2F449102FDB4FE23B1C3 /* NotchShape.swift */; };
 		241DA3A1F357A4F4207E298A /* macIslandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CFFE743DA6762594DF67D4 /* macIslandApp.swift */; };
 		32C47B0C0306F9A39BD78E17 /* DynamicNotchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228F9FB9853AC6B810BB3152 /* DynamicNotchInfo.swift */; };
-		38DF46001B66D8DE0766A78E /* PomodoroRingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEBB67B93BBF101D95AB73B /* PomodoroRingIndicator.swift */; };
+		361236123612361236123612 /* DynamicNotchWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471247124712471247124712 /* DynamicNotchWindowTests.swift */; };
+		440044004400440044004400 /* ExpandedIslandLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550055005500550055005500 /* ExpandedIslandLayoutTests.swift */; };
+		390039003900390039003900 /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A003A003A003A003A003A00 /* TaskRowView.swift */; };
 		4A76ADAF85B5D70D45F4C29E /* NotchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75DD63FB72E355811B242B5 /* NotchPanel.swift */; };
-		4AD26BD0AF4A6DDE58802A5B /* NotchContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C0FDD78CC77319F60DA889 /* NotchContentView.swift */; };
 		4C5D4D415E23A1A5D9F95EAA /* NotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1731003144E396A4C4F8AA /* NotchView.swift */; };
 		4B8433AC7618B1D76A9BFBBE /* NowPlayingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BAD5A9B0E941597B58C134 /* NowPlayingService.swift */; };
 		50130B40FA86608815FA4F93 /* MiniWaveformBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CDB34B9E58D6E075E6A478 /* MiniWaveformBars.swift */; };
-		5235200B585BF27ABCFC8B15 /* ExpandedNotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2356D32819A305553267C03F /* ExpandedNotchView.swift */; };
 		537AF87CD3F3B80AAC8D65E3 /* NSScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D80339324C0B800E6E4AA2 /* NSScreen+Extensions.swift */; };
-		A136B8B4EDF70058EF2B07D7 /* PomodoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57D54C81F6D74D6EB28893E /* PomodoroTimerView.swift */; };
+		5A005A005A005A005A005A00 /* ExpandedIslandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B005B005B005B005B005B00 /* ExpandedIslandView.swift */; };
 		A8C65C758E2ACD985BDFC612 /* MediaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1FE81449912096D184E386 /* MediaPlayerView.swift */; };
-		CF7BC60EBA6EA40C204FF49B /* PomodoroTimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8599E84DD294FD864C9E9A87 /* PomodoroTimerService.swift */; };
+		C100C100C100C100C100C100 /* MusicTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C200C200C200C200C200C200 /* MusicTabView.swift */; };
 		D3C4C8FD0717DA21E55EC2C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71DCA83A1AC695E81718851 /* AppDelegate.swift */; };
 		E0FE1C9F78E6CF20545B04C6 /* AudioWaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7CFCEFDBAF6E1570B24394 /* AudioWaveformView.swift */; };
 		E438DBB2A96CB6681075E2CC /* HoverMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9173EBB43EAD5B917D50B3F /* HoverMonitor.swift */; };
-		E8B6E60224CAC935C0B8D7B2 /* CollapsedNotchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED518FBAF41D4E24EE7A2D34 /* CollapsedNotchView.swift */; };
-		ECF0B743A8E27E33649CD2FA /* PomodoroTimerServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883AFEFA0E91EA5C2AC17D6 /* PomodoroTimerServiceTests.swift */; };
+		330033003300330033003300 /* TaskStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFACAFEABCDEF1234567890 /* TaskStoreTests.swift */; };
 		EEAC62CB2135EC666BC72868 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F70F441F97265CA238ACCE8 /* Models.swift */; };
+		110011001100110011001100 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFEDD00CAFE001122334455 /* TaskItem.swift */; };
+		220022002200220022002200 /* TaskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEFCAFE1234567890ABCDEF /* TaskStore.swift */; };
 		F1F4C42B177E5FE76C7E2430 /* BlurModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B95DD11AD6FF6850F5603A /* BlurModifier.swift */; };
 		F96A8D3FF0E56301370982EA /* NotchPositionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF9FCCD9075CB438D8DD078 /* NotchPositionManager.swift */; };
 /* End PBXBuildFile section */
@@ -45,32 +47,34 @@
 
 /* Begin PBXFileReference section */
 		0F70F441F97265CA238ACCE8 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		0DD0DD0DD0DD0DD0DD0DD0DD /* ExpandedIslandLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedIslandLayout.swift; sourceTree = "<group>"; };
+		0FF0FF0FF0FF0FF0FF0FF0FF /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		CAFEDD00CAFE001122334455 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
 		1BF9FCCD9075CB438D8DD078 /* NotchPositionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPositionManager.swift; sourceTree = "<group>"; };
 		1B45258D1853A89C6B79A0AF /* DynamicNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNotch.swift; sourceTree = "<group>"; };
-		2356D32819A305553267C03F /* ExpandedNotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedNotchView.swift; sourceTree = "<group>"; };
 		216B2F449102FDB4FE23B1C3 /* NotchShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchShape.swift; sourceTree = "<group>"; };
 		228F9FB9853AC6B810BB3152 /* DynamicNotchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNotchInfo.swift; sourceTree = "<group>"; };
 		2B1FE81449912096D184E386 /* MediaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerView.swift; sourceTree = "<group>"; };
+		3A003A003A003A003A003A00 /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
 		4D0CEF7EBF41E5CBB9441122 /* macIsland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macIsland.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		471247124712471247124712 /* DynamicNotchWindowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicNotchWindowTests.swift; sourceTree = "<group>"; };
+		550055005500550055005500 /* ExpandedIslandLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedIslandLayoutTests.swift; sourceTree = "<group>"; };
+		5B005B005B005B005B005B00 /* ExpandedIslandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedIslandView.swift; sourceTree = "<group>"; };
 		5D1731003144E396A4C4F8AA /* NotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchView.swift; sourceTree = "<group>"; };
-		5883AFEFA0E91EA5C2AC17D6 /* PomodoroTimerServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerServiceTests.swift; sourceTree = "<group>"; };
+		FAFACAFEABCDEF1234567890 /* TaskStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStoreTests.swift; sourceTree = "<group>"; };
 		6D7CFCEFDBAF6E1570B24394 /* AudioWaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioWaveformView.swift; sourceTree = "<group>"; };
-		6F78D6173058CCED4EAEC3E9 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		84D80339324C0B800E6E4AA2 /* NSScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSScreen+Extensions.swift"; sourceTree = "<group>"; };
-		8599E84DD294FD864C9E9A87 /* PomodoroTimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerService.swift; sourceTree = "<group>"; };
+		BEEFCAFE1234567890ABCDEF /* TaskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStore.swift; sourceTree = "<group>"; };
 		9E173B15ECDFDAC5C35C4D49 /* macIslandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = macIslandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1CFFE743DA6762594DF67D4 /* macIslandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = macIslandApp.swift; sourceTree = "<group>"; };
 		ABDDF91CAB6C6318C6C4CC6D /* macIsland.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macIsland.entitlements; sourceTree = "<group>"; };
 		B5CDB34B9E58D6E075E6A478 /* MiniWaveformBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniWaveformBars.swift; sourceTree = "<group>"; };
 		B3B95DD11AD6FF6850F5603A /* BlurModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurModifier.swift; sourceTree = "<group>"; };
 		C71DCA83A1AC695E81718851 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C200C200C200C200C200C200 /* MusicTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTabView.swift; sourceTree = "<group>"; };
 		C75DD63FB72E355811B242B5 /* NotchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchPanel.swift; sourceTree = "<group>"; };
-		C7C0FDD78CC77319F60DA889 /* NotchContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotchContentView.swift; sourceTree = "<group>"; };
 		D0BAD5A9B0E941597B58C134 /* NowPlayingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingService.swift; sourceTree = "<group>"; };
-		D57D54C81F6D74D6EB28893E /* PomodoroTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerView.swift; sourceTree = "<group>"; };
 		E9173EBB43EAD5B917D50B3F /* HoverMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverMonitor.swift; sourceTree = "<group>"; };
-		ED518FBAF41D4E24EE7A2D34 /* CollapsedNotchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsedNotchView.swift; sourceTree = "<group>"; };
-		EEEBB67B93BBF101D95AB73B /* PomodoroRingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroRingIndicator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -86,9 +90,7 @@
 		0B9622A6DDFCC258154551D0 /* Collapsed */ = {
 			isa = PBXGroup;
 			children = (
-				ED518FBAF41D4E24EE7A2D34 /* CollapsedNotchView.swift */,
 				B5CDB34B9E58D6E075E6A478 /* MiniWaveformBars.swift */,
-				EEEBB67B93BBF101D95AB73B /* PomodoroRingIndicator.swift */,
 			);
 			path = Collapsed;
 			sourceTree = "<group>";
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				0F70F441F97265CA238ACCE8 /* Models.swift */,
+				CAFEDD00CAFE001122334455 /* TaskItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -150,7 +153,9 @@
 		C20173E1E9B5C1253ED400DB /* macIslandTests */ = {
 			isa = PBXGroup;
 			children = (
-				5883AFEFA0E91EA5C2AC17D6 /* PomodoroTimerServiceTests.swift */,
+				471247124712471247124712 /* DynamicNotchWindowTests.swift */,
+				550055005500550055005500 /* ExpandedIslandLayoutTests.swift */,
+				FAFACAFEABCDEF1234567890 /* TaskStoreTests.swift */,
 			);
 			path = macIslandTests;
 			sourceTree = "<group>";
@@ -158,9 +163,8 @@
 		C32E94B36E7EFCBE7C599B23 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				6F78D6173058CCED4EAEC3E9 /* NotificationService.swift */,
 				D0BAD5A9B0E941597B58C134 /* NowPlayingService.swift */,
-				8599E84DD294FD864C9E9A87 /* PomodoroTimerService.swift */,
+				BEEFCAFE1234567890ABCDEF /* TaskStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -179,7 +183,6 @@
 			children = (
 				0B9622A6DDFCC258154551D0 /* Collapsed */,
 				F58B97D46104151BD2FFD89A /* Expanded */,
-				C7C0FDD78CC77319F60DA889 /* NotchContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,9 +207,12 @@
 			isa = PBXGroup;
 			children = (
 				6D7CFCEFDBAF6E1570B24394 /* AudioWaveformView.swift */,
-				2356D32819A305553267C03F /* ExpandedNotchView.swift */,
+				5B005B005B005B005B005B00 /* ExpandedIslandView.swift */,
+				0DD0DD0DD0DD0DD0DD0DD0DD /* ExpandedIslandLayout.swift */,
 				2B1FE81449912096D184E386 /* MediaPlayerView.swift */,
-				D57D54C81F6D74D6EB28893E /* PomodoroTimerView.swift */,
+				C200C200C200C200C200C200 /* MusicTabView.swift */,
+				3A003A003A003A003A003A00 /* TaskRowView.swift */,
+				0FF0FF0FF0FF0FF0FF0FF0FF /* TasksView.swift */,
 			);
 			path = Expanded;
 			sourceTree = "<group>";
@@ -293,23 +299,23 @@
 				0B52E3B39DA4164B46EF60B0 /* DynamicNotch.swift in Sources */,
 				32C47B0C0306F9A39BD78E17 /* DynamicNotchInfo.swift in Sources */,
 				E0FE1C9F78E6CF20545B04C6 /* AudioWaveformView.swift in Sources */,
-				E8B6E60224CAC935C0B8D7B2 /* CollapsedNotchView.swift in Sources */,
-				5235200B585BF27ABCFC8B15 /* ExpandedNotchView.swift in Sources */,
+				5A005A005A005A005A005A00 /* ExpandedIslandView.swift in Sources */,
+				0CC0CC0CC0CC0CC0CC0CC0CC /* ExpandedIslandLayout.swift in Sources */,
 				E438DBB2A96CB6681075E2CC /* HoverMonitor.swift in Sources */,
 				A8C65C758E2ACD985BDFC612 /* MediaPlayerView.swift in Sources */,
+				C100C100C100C100C100C100 /* MusicTabView.swift in Sources */,
 				50130B40FA86608815FA4F93 /* MiniWaveformBars.swift in Sources */,
 				EEAC62CB2135EC666BC72868 /* Models.swift in Sources */,
+				110011001100110011001100 /* TaskItem.swift in Sources */,
+				390039003900390039003900 /* TaskRowView.swift in Sources */,
+				220022002200220022002200 /* TaskStore.swift in Sources */,
+				0EE0EE0EE0EE0EE0EE0EE0EE /* TasksView.swift in Sources */,
 				537AF87CD3F3B80AAC8D65E3 /* NSScreen+Extensions.swift in Sources */,
-				4AD26BD0AF4A6DDE58802A5B /* NotchContentView.swift in Sources */,
 				4A76ADAF85B5D70D45F4C29E /* NotchPanel.swift in Sources */,
 				19D8D3C0AA82FCE6648D0264 /* NotchShape.swift in Sources */,
 				F96A8D3FF0E56301370982EA /* NotchPositionManager.swift in Sources */,
 				4C5D4D415E23A1A5D9F95EAA /* NotchView.swift in Sources */,
-				018A6B7C19B0456FDF1541F0 /* NotificationService.swift in Sources */,
 				4B8433AC7618B1D76A9BFBBE /* NowPlayingService.swift in Sources */,
-				38DF46001B66D8DE0766A78E /* PomodoroRingIndicator.swift in Sources */,
-				CF7BC60EBA6EA40C204FF49B /* PomodoroTimerService.swift in Sources */,
-				A136B8B4EDF70058EF2B07D7 /* PomodoroTimerView.swift in Sources */,
 				241DA3A1F357A4F4207E298A /* macIslandApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,7 +324,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECF0B743A8E27E33649CD2FA /* PomodoroTimerServiceTests.swift in Sources */,
+				361236123612361236123612 /* DynamicNotchWindowTests.swift in Sources */,
+				440044004400440044004400 /* ExpandedIslandLayoutTests.swift in Sources */,
+				330033003300330033003300 /* TaskStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

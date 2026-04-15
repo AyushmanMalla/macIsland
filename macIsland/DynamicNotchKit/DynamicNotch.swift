@@ -6,7 +6,8 @@ final class DynamicNotch<Content>: ObservableObject where Content: View {
     var windowController: NSWindowController?
 
     @Published var nowPlayingService: NowPlayingService
-    @Published var pomodoroService: PomodoroTimerService
+    @Published var taskStore: TaskStore
+    @Published var selectedTab: ExpandedTab = .music
     @Published var content: () -> Content
     @Published var contentID: UUID
     @Published var isVisible = false
@@ -17,6 +18,9 @@ final class DynamicNotch<Content>: ObservableObject where Content: View {
 
     var workItem: DispatchWorkItem?
     private var subscription: AnyCancellable?
+    private let hoverMonitor = HoverMonitor()
+    private var hoverSubscription: AnyCancellable?
+    private var interactivitySubscription: AnyCancellable?
     private let notchStyle: Style
 
     enum Style {
@@ -36,29 +40,71 @@ final class DynamicNotch<Content>: ObservableObject where Content: View {
         contentID: UUID = .init(),
         style: Style = .auto,
         nowPlayingService: NowPlayingService,
-        pomodoroService: PomodoroTimerService,
+        taskStore: TaskStore,
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.contentID = contentID
         self.content = content
         self.notchStyle = style
         self.nowPlayingService = nowPlayingService
-        self.pomodoroService = pomodoroService
+        self.taskStore = taskStore
         self.subscription = NotificationCenter.default
             .publisher(for: NSApplication.didChangeScreenParametersNotification)
             .sink { [weak self] _ in
                 guard let self, let screen = NSScreen.screens.first else { return }
                 self.initializeWindow(screen: screen)
             }
+        configureHoverPipeline()
+        hoverMonitor.startMonitoring()
     }
 
     deinit {
         workItem?.cancel()
+        hoverMonitor.stopMonitoring()
         deinitializeWindow()
     }
 }
 
 extension DynamicNotch {
+    private func configureHoverPipeline() {
+        hoverSubscription = hoverMonitor.$isHovering
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] hovering in
+                self?.setMouseInside(hovering)
+            }
+
+        interactivitySubscription = $isMouseInside
+            .removeDuplicates()
+            .sink { [weak self] hovering in
+                self?.syncPanelInteractivity(isHovering: hovering)
+            }
+    }
+
+    private func setMouseInside(_ hovering: Bool) {
+        withAnimation(animation) {
+            isMouseInside = hovering
+            isVisible = hovering || isNotificationVisible
+        }
+
+        if hovering {
+            workItem?.cancel()
+            isNotificationVisible = false
+        }
+    }
+
+    private func syncPanelInteractivity(isHovering: Bool) {
+        guard let panel = windowController?.window else { return }
+
+        panel.ignoresMouseEvents = !isHovering
+
+        if isHovering {
+            panel.orderFrontRegardless()
+        } else if panel.isKeyWindow {
+            panel.resignKey()
+        }
+    }
+
     func setContent(contentID: UUID = .init(), content: @escaping () -> Content) {
         self.content = content
         self.contentID = contentID
@@ -137,33 +183,14 @@ extension DynamicNotch {
         refreshNotchSize(screen)
 
         let rootView = NotchView(dynamicNotch: self).foregroundStyle(.white)
-        let hostingView = NSHostingView(rootView: rootView)
-
-        let panel = NSPanel(
+        let panel = NotchPanel(
             contentRect: .zero,
-            styleMask: [.fullSizeContentView, .borderless, .utilityWindow, .nonactivatingPanel],
-            backing: .buffered,
-            defer: true
+            contentView: rootView
         )
-        panel.isMovable = false
-        panel.isOpaque = false
-        panel.titleVisibility = .hidden
-        panel.titlebarAppearsTransparent = true
-        panel.backgroundColor = .clear
-        panel.contentView = hostingView
-        panel.orderFrontRegardless()
         panel.setFrame(screen.frame, display: false)
-        panel.hasShadow = false
-        panel.isReleasedWhenClosed = false
-        panel.level = .mainMenu + 3
-        panel.collectionBehavior = [
-            .fullScreenAuxiliary,
-            .stationary,
-            .canJoinAllSpaces,
-            .ignoresCycle,
-        ]
-
         windowController = .init(window: panel)
+        syncPanelInteractivity(isHovering: isMouseInside)
+        panel.orderFrontRegardless()
     }
 
     func deinitializeWindow() {

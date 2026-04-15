@@ -11,7 +11,7 @@ class NotchPanel: NSPanel {
     ) {
         super.init(
             contentRect: contentRect,
-            styleMask: [.borderless, .nonactivatingPanel],
+            styleMask: [.borderless, .nonactivatingPanel, .fullSizeContentView, .utilityWindow],
             backing: .buffered,
             defer: false
         )
@@ -21,30 +21,29 @@ class NotchPanel: NSPanel {
     }
 
     private func configurePanel() {
-        // Above everything, including the menu bar
-        self.level = .screenSaver
+        self.level = .mainMenu + 3
         self.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary, .ignoresCycle]
         self.isOpaque = false
         self.backgroundColor = .clear
         self.hasShadow = false
+        self.titleVisibility = .hidden
+        self.titlebarAppearsTransparent = true
+        self.isMovable = false
+        self.isReleasedWhenClosed = false
 
-        // Non-activating: don't steal focus
         self.becomesKeyOnlyIfNeeded = true
         self.isFloatingPanel = true
         self.hidesOnDeactivate = false
 
-        // Mouse events
         self.acceptsMouseMovedEvents = true
         self.ignoresMouseEvents = false
     }
 
     private func setupHostingView<Content: View>(_ content: Content) {
         let hosting = NSHostingView(rootView: AnyView(content))
-        hosting.frame = self.contentView?.bounds ?? .zero
+        hosting.frame = NSRect(origin: .zero, size: frame.size)
         hosting.autoresizingMask = [.width, .height]
-        hosting.layer?.backgroundColor = .clear
-
-        self.contentView?.addSubview(hosting)
+        self.contentView = hosting
         self.hostingView = hosting
     }
 

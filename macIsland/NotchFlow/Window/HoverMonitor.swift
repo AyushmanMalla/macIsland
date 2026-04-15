@@ -10,15 +10,17 @@ class HoverMonitor: ObservableObject {
     private let collapsedWidth: CGFloat = 180
     private let collapsedHeight: CGFloat = 38
 
-    // Expanded zone (matches ExpandedNotchView bounds + some padding)
-    private let expandedWidth: CGFloat = 480
-    private let expandedHeight: CGFloat = 130
+    // Expanded zone sized to the largest island state, with a little tolerance for motion.
+    private let expandedWidth: CGFloat = ExpandedIslandLayout.width + 60
+    private let expandedHeight: CGFloat = ExpandedIslandLayout.maxHeight + 24
     
     deinit {
         stopMonitoring()
     }
 
     func startMonitoring() {
+        guard localMonitor == nil, globalMonitor == nil else { return }
+
         localMonitor = NSEvent.addLocalMonitorForEvents(matching: [.mouseMoved]) { [weak self] event in
             self?.checkMouseLocation()
             return event
@@ -44,7 +46,7 @@ class HoverMonitor: ObservableObject {
     }
 
     private func checkMouseLocation() {
-        guard let screen = NSScreen.main else { return }
+        guard let screen = NSScreen.screenWithMouse ?? NSScreen.screens.first else { return }
 
         let mouseLoc = NSEvent.mouseLocation
         let screenFrame = screen.frame

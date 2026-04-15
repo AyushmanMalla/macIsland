@@ -16,13 +16,13 @@ final class DynamicNotchInfo {
         contentID: UUID = .init(),
         style: DynamicNotch<InfoView>.Style = .auto,
         nowPlayingService: NowPlayingService,
-        pomodoroService: PomodoroTimerService
+        taskStore: TaskStore
     ) {
         self.internalDynamicNotch = DynamicNotch(
             contentID: contentID,
             style: style,
             nowPlayingService: nowPlayingService,
-            pomodoroService: pomodoroService
+            taskStore: taskStore
         ) {
             InfoView(nowPlayingService: nowPlayingService)
         }
@@ -96,8 +96,8 @@ private struct CompactArtworkView: View {
                 ZStack {
                     LinearGradient(
                         colors: [
-                            Color(hex: "6C5CE7").opacity(0.55),
-                            Color(hex: "A29BFE").opacity(0.28)
+                            Color(red: 0.4235, green: 0.3608, blue: 0.9059).opacity(0.55),
+                            Color(red: 0.6353, green: 0.6078, blue: 0.9961).opacity(0.28)
                         ],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing

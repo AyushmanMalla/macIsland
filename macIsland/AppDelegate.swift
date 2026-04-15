@@ -2,16 +2,14 @@ import AppKit
 import Combine
 import SwiftUI
 
+@MainActor
 class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
-    private var pomodoroService = PomodoroTimerService()
     private var nowPlayingService = NowPlayingService()
-    private var notificationService = NotificationService()
+    private var taskStore = TaskStore()
     private var dynamicNotchInfo: DynamicNotchInfo?
     private var cancellables = Set<AnyCancellable>()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        notificationService.requestPermission()
-        setupPomodoroNotifications()
         setupDynamicNotch()
         nowPlayingService.startObserving()
         setupNowPlayingNotifications()
@@ -26,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
         let dynamicNotchInfo = DynamicNotchInfo(
             style: .auto,
             nowPlayingService: nowPlayingService,
-            pomodoroService: pomodoroService
+            taskStore: taskStore
         )
         dynamicNotchInfo.initializeNotchWindow()
         self.dynamicNotchInfo = dynamicNotchInfo
@@ -41,15 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
                 if !dynamicNotchInfo.isMouseInside {
                     dynamicNotchInfo.show(for: 2.2)
                 }
-            }
-            .store(in: &cancellables)
-    }
-
-    private func setupPomodoroNotifications() {
-        pomodoroService.$currentState
-            .removeDuplicates()
-            .sink { [weak self] state in
-                self?.notificationService.sendPomodoroNotification(for: state)
             }
             .store(in: &cancellables)
     }
